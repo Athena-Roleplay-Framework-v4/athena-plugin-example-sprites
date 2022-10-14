@@ -1,6 +1,6 @@
 import * as alt from 'alt-client';
-import { AthenaClient } from '../../../client/api/athena';
-import { SpriteInfo } from '../../../client/rmlui/sprites';
+import { AthenaClient } from '@AthenaClient/api/athena';
+import { SpriteInfo } from '@AthenaClient/rmlui/sprites';
 
 const coinPositions = [
     {
@@ -90,12 +90,12 @@ let coinIndex = 0;
 let nextImageUpdate = Date.now() + 100;
 
 function callOnTouch(uid: string) {
-    AthenaClient.sprite.remove(uid);
+    AthenaClient.rmlui.sprite.remove(uid);
 }
 
 for (let i = 0; i < coinPositions.length; i++) {
     coinPositions[i].uid = `coin-${i}`;
-    AthenaClient.sprite.create({
+    AthenaClient.rmlui.sprite.create({
         uid: coinPositions[i].uid,
         path: `@plugins/example-sprite/client/coin/${coinIndex}.png`,
         height: 50,
@@ -122,7 +122,7 @@ alt.setInterval(() => {
             dataToUpdate.position = alt.Player.local.pos;
         }
 
-        AthenaClient.sprite.update(`coin-${i}`, dataToUpdate);
+        AthenaClient.rmlui.sprite.update(`coin-${i}`, dataToUpdate);
 
         coinPositions[i].coinIndex += 1;
         if (coinPositions[i].coinIndex > COIN_MAX) {
